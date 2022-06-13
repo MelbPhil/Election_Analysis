@@ -1,3 +1,9 @@
+# Voter turnout for each county
+# Percentage of votes from each county of the total count
+# County with the highest turnout
+
+
+
 # Add our dependencies.
 import csv
 import os
@@ -57,7 +63,6 @@ with open(file_to_save, "w") as txt_file:
         votes = candidate_votes[candidate_name]
         # Calculate the percentage of votes.
         vote_percentage = float(votes) / float(total_votes) * 100
-        
         candidate_results = (
             f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
         
