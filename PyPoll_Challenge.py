@@ -6,9 +6,9 @@ import csv
 import os
 
 # Add a variable to load a file from a path.
-file_to_load = os.path.join("Resources", "election_results.csv")
+file_to_load = os.path.join("Desktop", "Class_work", "Week_3_Python", "Election_Analysis", "Resources", "election_results.csv")
 # Add a variable to save the file to a path.
-file_to_save = os.path.join("analysis", "election_results.txt")
+file_to_save = os.path.join("Desktop", "Class_work", "Week_3_Python", "Election_Analysis", "analysis", "election_results.txt")
 
 # Initialize a total vote counter.
 total_votes = 0
@@ -34,7 +34,7 @@ lrgest_turnout_votes = 0
 with open(file_to_load) as election_data:
     reader = csv.reader(election_data)
 
-    # Read the header
+    # Read three rows of headers
     header = next(reader)
 
     # For each row in the CSV file.
