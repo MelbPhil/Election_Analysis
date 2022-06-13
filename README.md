@@ -21,7 +21,7 @@ I assited a Colorado Board of Elecitons employee in writing a python script for 
 
 ## Election-Audit Results
 The analysis of the election shows that:
-- There were 369,771 votes cast in the election
+- There were 369,711 votes cast in the election
 - The voter turnout for each county in the precinct:
     - Jefferson: 10.5% (38,855)
     - Denver: 82.8% (306,055)
@@ -41,20 +41,22 @@ The analysis of the election shows that:
 ## Election-Audit Summary
 The python script created for this election is quite valuable as it can be easily repurposed (_with a few slight modifications_) to assist with analysing the results of any future elections. For the purpose of explanation, let's pretend we need to repurpose this script to tally the results of a Senate Primary Election. 
 
-First and foremost, we must adjust the file path `file_to_load = os.path.join("Desktop", "Class_work", "Week_3_Python", "Election_Analysis", "Resources", "election_results.csv")` ensuring that we're pulling data from the appropriate CSV file containing the Senate primary election data. Likewise, we must be consciencous of where we are going to be saving the script's analysis, adjusting the code `file_to_save = os.path.join("Desktop", "Class_work", "Week_3_Python", "Election_Analysis", "analysis", "election_results.txt")` accordingly. 
+First and foremost, we must adjust the file path `file_to_load = os.path.join("Desktop", "Class_work", "Week_3_Python", "Election_Analysis", "Resources", "election_results.csv")` ensuring that we're pulling data from the appropriate CSV file containing the data for the Senate Primary Election. Likewise, we must be consciencous of where we will be saving the script's analysis results, adjusting the code `file_to_save = os.path.join("Desktop", "Class_work", "Week_3_Python", "Election_Analysis", "analysis", "election_results.txt")` accordingly. 
 
-Let's pretend that the Senate Primary Election CSV file has three rows of headers at the top of the file, before listing off millions of votes. Whereas in our origional script we only used `header = next(reader)` to avoid counting the one header row in our vote total, in this Senate Primary Election CSV hypothetical we could write: 
+Let's pretend that the Senate Primary Election CSV file has three rows of headers at the top of the file, providing information on the varios methods in which balots were cast for the election, and then starting at row 4, the CSV bigins listing off a few million of votes. (_In the origional CSV file, there was only one header row._) The base form of the script uses the line `header = next(reader)` to avoid counting the singular header row in the vote total calculation, in this Senate Primary Election CSV hypothetical (_containing three header rows_) we could write: 
 ````
     # Read three rows of headers
     header1 = next(reader)
     header2 = next(reader)
     header3 = next(reader)
 ````
-This code would effectively read through all three rows of headers, such that we would not have to adjust the source CSV file, and could count up the remaining rows of votes.
+This code would effectively read through all three rows of headers, such that we would not have to adjust the source CSV file, and then the script would continue counting up the remaining rows of votes with ease. Should another hypothetical CSV file have ZERO header rows, starting immediately with the voting data, we could remove all these lines entirely, as we would not need to insctruct the code to avoid tallying any lines.
 
-Next, we must be consciensous of the fact that it is possible that the county names and candidate names might be stored in different columns as compared to our origional script. If, for instance candidate names were stored in the first column, and counties were stored in the 5th column, we'd need to adjust the following lines of code accordingly:
+Next, we must be aware of the fact that it is possible that the county names and candidate names might be stored in different columns as compared to our origional script. If, for instance candidate names were stored in the first column, and counties were stored in the 5th column, we'd need to adjust the following lines of code accordingly:
 
 - `candidate_name = row[2]` becomes `candidate_name = row[0]`
 - `county_name = row[1]` becomes `county_name = row[4]`
 
-As long as there were no other drastic differences in this new Senate Primary Election CSV file, no other changes would be absolutely required in order to produce effective election audit results. Perhaps the new code could be adjusted further to specify which election's results are being calculated, or in the event that this code were to be used on a different scale, in which the term county would no longer be appropriate, we could easily adjust that to be reflected in the output as well. With these stylistic changes, and after having adjusted the code to reflect any CSV format differentials, as discussed above, the script is capable of analysiing any future election, regardless of the number of candidates running for election, and regardless of the number of counties involved in casting votes. And for those reasons, this python script is quite valuable.
+As long as there were no other drastic differences in this new Senate Primary Election CSV file, no other changes would be absolutely required in order to produce effective election audit results. Perhaps the new code could be adjusted further stylistically to specify which election's results are being calculated. Or, in the event that this code were to be used on a different scale, in which the term county would no longer be appropriate, we could easily adjust that change to be reflected in the output as well. 
+
+With these stylistic changes, and after having adjusted the code to reflect any CSV format differentials, as discussed above, the script is capable of analysiing any future election, regardless of the number of candidates running for election, and regardless of the number of counties involved in casting votes. And for those reasons, this python script is quite valuable.
